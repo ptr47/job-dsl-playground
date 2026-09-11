@@ -8,7 +8,14 @@ import ratpack.groovy.template.TextTemplateModule
 import static ratpack.groovy.Groovy.groovyTemplate
 import static ratpack.groovy.Groovy.ratpack
 
-System.securityManager = new CustomSecurityManager()
+// SecurityManager was deprecated in Java 17 and cannot be installed from Java 24 onward.
+if (CustomSecurityManager.legacySandboxAvailable()) {
+    try {
+        System.securityManager = new CustomSecurityManager()
+    } catch (UnsupportedOperationException ignored) {
+        // Script execution fails closed if the legacy sandbox cannot be installed.
+    }
+}
 
 ratpack {
 

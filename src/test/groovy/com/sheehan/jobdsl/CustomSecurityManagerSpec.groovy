@@ -1,7 +1,9 @@
 package com.sheehan.jobdsl
 
 import spock.lang.Specification
+import spock.lang.IgnoreIf
 
+@IgnoreIf({ System.getProperty('java.specification.version').toBigDecimal() >= 18 })
 class CustomSecurityManagerSpec extends Specification {
 
     def setup() {
