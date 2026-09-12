@@ -91,4 +91,8 @@ class CustomSecurityManager extends SecurityManager {
         restrict.set false
     }
 
+    static boolean legacySandboxAvailable() {
+        Integer.parseInt(System.getProperty('java.specification.version')) < 24
+    }
+
 }

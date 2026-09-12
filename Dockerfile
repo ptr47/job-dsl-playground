@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM openjdk:17
 WORKDIR /usr/src
 COPY . /usr/src
 RUN /usr/src/gradlew build
